@@ -37,6 +37,12 @@
         <a href="#about">Our approach</a>
         <a href="#process">How it works</a>
         <a class="nav-cta" href="#contact">Get a quote <span>↗</span></a>
+
+        <div class="language-switch" aria-label="Choose language">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="lv" aria-pressed="false">LV</button>
+          <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+        </div>
       </nav>
     </div>
   </header>
@@ -282,7 +288,7 @@
 
           <form
             id="detailing-form"
-            action="https://formsubmit.co/YOUR_EMAIL@example.com"
+            action="https://formsubmit.co/akapilovs@gmail.com"
             method="POST"
           >
             <input type="hidden" name="_subject" value="New service request — Riga Detail Studio">
@@ -396,30 +402,560 @@
     </div>
   </footer>
 
-  <script>
-    const menuToggle = document.getElementById("menu-toggle");
-    const navLinks = document.getElementById("nav-links");
+ 
+<script>
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
+  const languageButtons = document.querySelectorAll("[data-lang]");
 
-    menuToggle.addEventListener("click", function () {
-      const isOpen = navLinks.classList.toggle("is-open");
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-      menuToggle.setAttribute(
-        "aria-label",
-        isOpen ? "Close navigation" : "Open navigation"
-      );
+  const translations = {
+    en: {
+      "nav-links a": [
+        "Services",
+        "Our approach",
+        "How it works",
+        'Get a quote <span>↗</span>'
+      ],
+      ".hero .eyebrow": [
+        '<span class="status-dot"></span> AUTOMOTIVE CARE · RIGA, LATVIA'
+      ],
+      ".hero h1": ["Your car.<br><span>Reimagined.</span>"],
+      ".hero-description": [
+        "Thoughtful detailing. Exceptional finishes. A cleaner, sharper look for every journey."
+      ],
+      ".hero-actions .button": ['Request a quote <span>↗</span>'],
+      ".hero-actions .text-link": ['Explore our services <span>↓</span>'],
+      ".hero-bottom > span:first-child": ["DETAILING WITH ATTENTION TO EVERY DETAIL"],
+      ".intro-inner p": [
+        "BEYOND THE SURFACE.",
+        "CARE YOU CAN SEE.",
+        "QUALITY YOU CAN FEEL."
+      ],
+      "#services .eyebrow": ["WHAT WE DO"],
+      "#services h2": ["Care for every<br><em>curve and surface.</em>"],
+      "#services .section-description": [
+        "From a refreshed interior to a refined exterior finish, choose the care that suits your car."
+      ],
+      ".service-number": [
+        "01 / EXTERIOR",
+        "02 / INTERIOR",
+        "03 / PAINT",
+        "04 / PROTECTION"
+      ],
+      ".service-copy h3": [
+        "Exterior detailing",
+        "Interior detailing",
+        "Paint correction",
+        "Ceramic coating"
+      ],
+      ".service-copy p": [
+        "Careful exterior cleaning to restore a fresh, polished appearance.",
+        "Detailed cabin care for a cleaner, more comfortable drive.",
+        "Selected paintwork treatments to improve clarity and gloss.",
+        "Ask about protective treatments designed to support easier maintenance."
+      ],
+      ".about-copy > .eyebrow": ["OUR APPROACH"],
+      ".about-copy h2": ["Not just clean.<br><em>Considered.</em>"],
+      ".about-lead": [
+        "Great detailing is about the little things — the surfaces, the finish, and the feeling when you get back behind the wheel."
+      ],
+      ".about-text": [
+        "At Riga Detail Studio, our goal is simple: help your car look its best with careful work and a service tailored to its needs. Tell us what you want to improve, and we'll help you explore the available options."
+      ],
+      ".button-outline-light": ["Let's talk about your car <span>↗</span>"],
+      ".about-note": [
+        '<span class="status-dot"></span> PERSONAL ATTENTION. CLEAR COMMUNICATION.'
+      ],
+      ".process-heading .eyebrow": ["A SIMPLE PROCESS"],
+      ".process-heading h2": ["From first message<br>to <em>fresh finish.</em>"],
+      ".process-heading .section-description": [
+        "Getting started should be straightforward. Here's how your detailing request can begin."
+      ],
+      ".process-card h3": [
+        "Tell us about your car",
+        "Discuss the options",
+        "Plan your visit"
+      ],
+      ".process-card p": [
+        "Share your car model, the service you're interested in, and your goals.",
+        "We'll review your request and discuss suitable services and pricing.",
+        "Once the details are agreed, arrange a convenient time for your service."
+      ],
+      ".contact-intro > .eyebrow": ["YOUR NEXT STEP"],
+      ".contact-intro h2": [
+        "Let's give your car<br><em>the attention it deserves.</em>"
+      ],
+      ".contact-description": [
+        "Tell us a little about your car and what you'd like to improve. Send a request and we'll have the details to start a conversation."
+      ],
+      ".contact-detail small": ["LOCATION", "EMAIL"],
+      ".contact-detail p": [
+        "Riga, Latvia",
+        "Use the contact form to get in touch"
+      ],
+      ".contact-disclaimer": [
+        "Please note: this is a website template. Confirm your actual services, availability and pricing before accepting bookings."
+      ],
+      ".form-heading .eyebrow": ["SERVICE ENQUIRY"],
+      ".form-heading h3": ['Request a quote<span>.</span>'],
+      ".form-heading > p:last-child": ["Fields marked with * are required."],
+      ".form-field label": [
+        "Your name *",
+        "Email address *",
+        "Phone number",
+        "Car make and model *",
+        "Service of interest *",
+        "Tell us more"
+      ],
+      "#client-name": ["John Smith"],
+      "#client-email": ["you@example.com"],
+      "#client-phone": ["+371 ..."],
+      "#client-car": ["BMW 3 Series"],
+      "#client-details": ["Describe what you'd like to improve..."],
+      "#client-service option": [
+        "Select a service",
+        "Exterior detailing",
+        "Interior detailing",
+        "Paint correction",
+        "Ceramic coating",
+        "Full detailing",
+        "Other / not sure"
+      ],
+      ".form-submit": ['Send enquiry <span>↗</span>'],
+      ".form-note": [
+        "By submitting this form, you agree that your details may be used to respond to your enquiry."
+      ],
+      ".footer-main > p": ["Thoughtful car care in Riga."],
+      ".back-to-top": ["BACK TO TOP ↑"],
+      ".footer-bottom > span:last-child": ["DESIGNED WITH ATTENTION TO DETAIL."]
+    },
+
+    lv: {
+      "nav-links a": [
+        "Pakalpojumi",
+        "Mūsu pieeja",
+        "Kā tas notiek",
+        'Saņemt piedāvājumu <span>↗</span>'
+      ],
+      ".hero .eyebrow": [
+        '<span class="status-dot"></span> AUTO KOPŠANA · RĪGA, LATVIJA'
+      ],
+      ".hero h1": ["Jūsu auto.<br><span>Jaunā gaismā.</span>"],
+      ".hero-description": [
+        "Pārdomāta auto kopšana un izcils rezultāts. Tīrāks, spožāks auto katram braucienam."
+      ],
+      ".hero-actions .button": ['Saņemt piedāvājumu <span>↗</span>'],
+      ".hero-actions .text-link": ['Apskatīt pakalpojumus <span>↓</span>'],
+      ".hero-bottom > span:first-child": ["RŪPĪBA PAR KATRU DETAĻU"],
+      ".intro-inner p": [
+        "VAIRĀK NEKĀ TIKAI VIRSMAS.",
+        "RŪPĪBA, KO REDZAT.",
+        "KVALITĀTE, KO JŪTAT."
+      ],
+      "#services .eyebrow": ["MŪSU PAKALPOJUMI"],
+      "#services h2": ["Rūpes par katru<br><em>līkni un virsmu.</em>"],
+      "#services .section-description": [
+        "No atsvaidzināta salona līdz nevainojamai virsbūvei — izvēlieties savam auto piemērotāko kopšanu."
+      ],
+      ".service-number": [
+        "01 / VIRSBŪVE",
+        "02 / SALONS",
+        "03 / KRĀSOJUMS",
+        "04 / AIZSARDZĪBA"
+      ],
+      ".service-copy h3": [
+        "Virsbūves detailing",
+        "Salona detailing",
+        "Krāsojuma korekcija",
+        "Keramikas pārklājums"
+      ],
+      ".service-copy p": [
+        "Rūpīga virsbūves tīrīšana, lai atjaunotu tīru un spodru izskatu.",
+        "Detalizēta salona kopšana tīrākam un ērtākam braucienam.",
+        "Krāsojuma apstrāde, lai uzlabotu krāsas dzidrumu un spīdumu.",
+        "Uzziniet par aizsargpārklājumiem, kas atvieglo ikdienas kopšanu."
+      ],
+      ".about-copy > .eyebrow": ["MŪSU PIEEJA"],
+      ".about-copy h2": ["Ne tikai tīrs.<br><em>Pārdomāti kopts.</em>"],
+      ".about-lead": [
+        "Lielisku rezultātu veido sīkumi — virsmas, apdare un sajūta, atkal sēžoties pie stūres."
+      ],
+      ".about-text": [
+        "Riga Detail Studio mērķis ir palīdzēt jūsu auto izskatīties pēc iespējas labāk. Strādājam rūpīgi un pielāgojam pakalpojumu jūsu vajadzībām. Pastāstiet, ko vēlaties uzlabot, un palīdzēsim izvērtēt iespējas."
+      ],
+      ".button-outline-light": ["Parunāsim par jūsu auto <span>↗</span>"],
+      ".about-note": [
+        '<span class="status-dot"></span> INDIVIDUĀLA PIEEJA. SKAIDRA SAZIŅA.'
+      ],
+      ".process-heading .eyebrow": ["VIENKĀRŠS PROCESS"],
+      ".process-heading h2": ["No pirmās ziņas<br>līdz <em>izcilam rezultātam.</em>"],
+      ".process-heading .section-description": [
+        "Viss sākas vienkārši. Lūk, kā varat pieteikt auto kopšanas pakalpojumu."
+      ],
+      ".process-card h3": [
+        "Pastāstiet par savu auto",
+        "Pārrunāsim iespējas",
+        "Plānosim vizīti"
+      ],
+      ".process-card p": [
+        "Norādiet auto modeli, interesējošo pakalpojumu un vēlamo rezultātu.",
+        "Izskatīsim jūsu pieprasījumu un pārrunāsim piemērotos pakalpojumus un cenas.",
+        "Kad detaļas būs saskaņotas, vienosimies par ērtu pakalpojuma laiku."
+      ],
+      ".contact-intro > .eyebrow": ["NĀKAMAIS SOLIS"],
+      ".contact-intro h2": [
+        "Parūpēsimies par jūsu auto<br><em>tā, kā tas ir pelnījis.</em>"
+      ],
+      ".contact-description": [
+        "Pastāstiet par savu auto un to, ko vēlaties uzlabot. Nosūtiet pieprasījumu, lai varam sākt sarunu."
+      ],
+      ".contact-detail small": ["ATRAŠANĀS VIETA", "E-PASTS"],
+      ".contact-detail p": [
+        "Rīga, Latvija",
+        "Sazinieties, izmantojot pieteikuma formu"
+      ],
+      ".contact-disclaimer": [
+        "Lūdzu, ņemiet vērā: šī ir vietnes veidne. Pirms pieteikumu pieņemšanas apstipriniet faktiskos pakalpojumus, pieejamību un cenas."
+      ],
+      ".form-heading .eyebrow": ["PAKALPOJUMA PIEPRASĪJUMS"],
+      ".form-heading h3": ['Saņemt piedāvājumu<span>.</span>'],
+      ".form-heading > p:last-child": ["Ar * atzīmētie lauki ir obligāti."],
+      ".form-field label": [
+        "Jūsu vārds *",
+        "E-pasta adrese *",
+        "Tālruņa numurs",
+        "Auto marka un modelis *",
+        "Interesējošais pakalpojums *",
+        "Papildu informācija"
+      ],
+      "#client-name": ["Jānis Bērziņš"],
+      "#client-email": ["jūs@example.com"],
+      "#client-phone": ["+371 ..."],
+      "#client-car": ["BMW 3. sērija"],
+      "#client-details": ["Aprakstiet, ko vēlaties uzlabot..."],
+      "#client-service option": [
+        "Izvēlieties pakalpojumu",
+        "Virsbūves detailing",
+        "Salona detailing",
+        "Krāsojuma korekcija",
+        "Keramikas pārklājums",
+        "Pilna auto detailing apkope",
+        "Cits / vēl nezinu"
+      ],
+      ".form-submit": ['Nosūtīt pieprasījumu <span>↗</span>'],
+      ".form-note": [
+        "Nosūtot šo formu, jūs piekrītat, ka jūsu sniegtā informācija tiks izmantota, lai atbildētu uz jūsu pieprasījumu."
+      ],
+      ".footer-main > p": ["Rūpīga auto kopšana Rīgā."],
+      ".back-to-top": ["UZ AUGŠU ↑"],
+      ".footer-bottom > span:last-child": ["VEIDOTS AR RŪPĪBU PAR DETAĻĀM."]
+    },
+
+    ru: {
+      "nav-links a": [
+        "Услуги",
+        "Наш подход",
+        "Как это работает",
+        'Узнать стоимость <span>↗</span>'
+      ],
+      ".hero .eyebrow": [
+        '<span class="status-dot"></span> УХОД ЗА АВТО · РИГА, ЛАТВИЯ'
+      ],
+      ".hero h1": ["Ваш автомобиль.<br><span>Новый взгляд.</span>"],
+      ".hero-description": [
+        "Внимательный уход. Безупречный результат. Чистый и ухоженный автомобиль для каждой поездки."
+      ],
+      ".hero-actions .button": ['Узнать стоимость <span>↗</span>'],
+      ".hero-actions .text-link": ['Наши услуги <span>↓</span>'],
+      ".hero-bottom > span:first-child": ["ВНИМАНИЕ К КАЖДОЙ ДЕТАЛИ"],
+      ".intro-inner p": [
+        "БОЛЬШЕ, ЧЕМ ПРОСТО ПОВЕРХНОСТЬ.",
+        "ЗАБОТА, КОТОРУЮ ВИДНО.",
+        "КАЧЕСТВО, КОТОРОЕ ЧУВСТВУЕТСЯ."
+      ],
+      "#services .eyebrow": ["НАШИ УСЛУГИ"],
+      "#services h2": ["Забота о каждой<br><em>линии и поверхности.</em>"],
+      "#services .section-description": [
+        "От обновления салона до безупречного внешнего вида — выберите подходящий уход для своего автомобиля."
+      ],
+      ".service-number": [
+        "01 / ЭКСТЕРЬЕР",
+        "02 / ИНТЕРЬЕР",
+        "03 / ПОКРЫТИЕ",
+        "04 / ЗАЩИТА"
+      ],
+      ".service-copy h3": [
+        "Уход за кузовом",
+        "Уход за салоном",
+        "Коррекция лакокрасочного покрытия",
+        "Керамическое покрытие"
+      ],
+      ".service-copy p": [
+        "Тщательная мойка и обработка кузова для свежего и ухоженного вида.",
+        "Детальная очистка салона для чистоты и комфорта в поездках.",
+        "Обработка лакокрасочного покрытия для улучшения гладкости и блеска.",
+        "Узнайте о защитных покрытиях, которые упрощают дальнейший уход."
+      ],
+      ".about-copy > .eyebrow": ["НАШ ПОДХОД"],
+      ".about-copy h2": ["Не просто чисто.<br><em>Продуманный уход.</em>"],
+      ".about-lead": [
+        "Качественный детейлинг складывается из мелочей — поверхностей, отделки и ощущения, когда вы снова садитесь за руль."
+      ],
+      ".about-text": [
+        "Цель Riga Detail Studio проста: помочь вашему автомобилю выглядеть наилучшим образом. Мы работаем внимательно и подбираем услуги под ваши потребности. Расскажите, что хотите улучшить, и мы поможем рассмотреть доступные варианты."
+      ],
+      ".button-outline-light": ["Обсудим ваш автомобиль <span>↗</span>"],
+      ".about-note": [
+        '<span class="status-dot"></span> ИНДИВИДУАЛЬНЫЙ ПОДХОД. ПОНЯТНОЕ ОБЩЕНИЕ.'
+      ],
+      ".process-heading .eyebrow": ["ПРОСТОЙ ПРОЦЕСС"],
+      ".process-heading h2": ["От первого сообщения<br>до <em>отличного результата.</em>"],
+      ".process-heading .section-description": [
+        "Начать просто. Вот как можно оформить запрос на детейлинг."
+      ],
+      ".process-card h3": [
+        "Расскажите об автомобиле",
+        "Обсудим варианты",
+        "Запланируем визит"
+      ],
+      ".process-card p": [
+        "Укажите модель автомобиля, интересующую услугу и желаемый результат.",
+        "Мы рассмотрим запрос и обсудим подходящие услуги и цены.",
+        "Когда согласуем детали, выберем удобное время для обслуживания."
+      ],
+      ".contact-intro > .eyebrow": ["ВАШ СЛЕДУЮЩИЙ ШАГ"],
+      ".contact-intro h2": [
+        "Подарим вашему автомобилю<br><em>заслуженный уход.</em>"
+      ],
+      ".contact-description": [
+        "Расскажите немного о своём автомобиле и о том, что хотите улучшить. Отправьте заявку, и мы сможем обсудить детали."
+      ],
+      ".contact-detail small": ["МЕСТОПОЛОЖЕНИЕ", "ЭЛЕКТРОННАЯ ПОЧТА"],
+      ".contact-detail p": [
+        "Рига, Латвия",
+        "Свяжитесь с нами через форму заявки"
+      ],
+      ".contact-disclaimer": [
+        "Обратите внимание: это шаблон сайта. Перед приёмом заказов подтвердите реальные услуги, доступность и цены."
+      ],
+      ".form-heading .eyebrow": ["ЗАПРОС УСЛУГИ"],
+      ".form-heading h3": ['Узнать стоимость<span>.</span>'],
+      ".form-heading > p:last-child": ["Поля, отмеченные *, обязательны."],
+      ".form-field label": [
+        "Ваше имя *",
+        "Электронная почта *",
+        "Номер телефона",
+        "Марка и модель автомобиля *",
+        "Интересующая услуга *",
+        "Дополнительная информация"
+      ],
+      "#client-name": ["Иван Иванов"],
+      "#client-email": ["you@example.com"],
+      "#client-phone": ["+371 ..."],
+      "#client-car": ["BMW 3 серии"],
+      "#client-details": ["Расскажите, что вы хотели бы улучшить..."],
+      "#client-service option": [
+        "Выберите услугу",
+        "Уход за кузовом",
+        "Уход за салоном",
+        "Коррекция лакокрасочного покрытия",
+        "Керамическое покрытие",
+        "Полный детейлинг",
+        "Другое / пока не уверен"
+      ],
+      ".form-submit": ['Отправить заявку <span>↗</span>'],
+      ".form-note": [
+        "Отправляя форму, вы соглашаетесь с использованием указанных данных для ответа на ваш запрос."
+      ],
+      ".footer-main > p": ["Внимательный уход за автомобилями в Риге."],
+      ".back-to-top": ["НАВЕРХ ↑"],
+      ".footer-bottom > span:last-child": ["СОЗДАНО С ВНИМАНИЕМ К ДЕТАЛЯМ."]
+    }
+  };
+
+  const originalText = new Map();
+
+  function rememberOriginalText() {
+    Object.keys(translations.en).forEach(function (selector) {
+      const elements = document.querySelectorAll(selector);
+
+      elements.forEach(function (element, index) {
+        const key = selector + "::" + index;
+
+        if (!originalText.has(key)) {
+          originalText.set(key, {
+            html: element.innerHTML,
+            placeholder: element.getAttribute("placeholder"),
+            ariaLabel: element.getAttribute("aria-label")
+          });
+        }
+      });
     });
+  }
 
-    navLinks.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        navLinks.classList.remove("is-open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation");
+  function applyLanguage(language) {
+    const selected = translations[language] ? language : "en";
+
+    Object.keys(translations[selected]).forEach(function (selector) {
+      const elements = document.querySelectorAll(selector);
+      const values = translations[selected][selector];
+
+      elements.forEach(function (element, index) {
+        if (values[index] === undefined) return;
+
+        if (selector.startsWith("#client-") &&
+            !selector.includes("option")) {
+          element.setAttribute("placeholder", values[index]);
+        } else {
+          element.innerHTML = values[index];
+        }
       });
     });
 
-    document.getElementById("current-year").textContent =
-      new Date().getFullYear();
-  </script>
+    document.documentElement.lang = selected;
+
+    const pageTitles = {
+      en: "Riga Detail Studio | Professional Car Detailing in Riga",
+      lv: "Riga Detail Studio | Auto detailing Rīgā",
+      ru: "Riga Detail Studio | Детейлинг автомобилей в Риге"
+    };
+
+    const descriptions = {
+      en: "Riga Detail Studio — car detailing, interior care, paint correction and ceramic coating in Riga, Latvia.",
+      lv: "Riga Detail Studio — auto detailing, salona kopšana, krāsojuma korekcija un keramikas pārklājumi Rīgā.",
+      ru: "Riga Detail Studio — детейлинг автомобилей, уход за салоном, коррекция покрытия и керамическая защита в Риге."
+    };
+
+    document.title = pageTitles[selected];
+    document.querySelector('meta[name="description"]')
+      .setAttribute("content", descriptions[selected]);
+
+    document.querySelectorAll(".service-visual").forEach(function (element, index) {
+      const labels = {
+        en: [
+          "Glossy dark car bodywork",
+          "Clean modern car interior",
+          "Reflective polished automotive paint",
+          "Water droplets on a protected car surface"
+        ],
+        lv: [
+          "Spīdīga automašīnas virsbūve",
+          "Tīrs, moderns automašīnas salons",
+          "Pulēta automašīnas krāsojuma virsma",
+          "Ūdens pilieni uz aizsargātas automašīnas virsmas"
+        ],
+        ru: [
+          "Блестящий кузов автомобиля",
+          "Чистый современный салон автомобиля",
+          "Отполированное лакокрасочное покрытие",
+          "Капли воды на защищённой поверхности автомобиля"
+        ]
+      };
+
+      element.setAttribute("aria-label", labels[selected][index]);
+    });
+
+    const navLabels = {
+      en: ["Services", "Our approach", "How it works", "Get a quote"],
+      lv: ["Pakalpojumi", "Mūsu pieeja", "Kā tas notiek", "Saņemt piedāvājumu"],
+      ru: ["Услуги", "Наш подход", "Как это работает", "Узнать стоимость"]
+    };
+
+    navLinks.setAttribute(
+      "aria-label",
+      selected === "en" ? "Main navigation" :
+      selected === "lv" ? "Galvenā navigācija" : "Главная навигация"
+    );
+
+    navLinks.querySelectorAll("a").forEach(function (link, index) {
+      link.setAttribute("aria-label", navLabels[selected][index]);
+    });
+
+    menuToggle.setAttribute(
+      "aria-label",
+      navLinks.classList.contains("is-open")
+        ? (selected === "lv" ? "Aizvērt izvēlni" : selected === "ru" ? "Закрыть меню" : "Close navigation")
+        : (selected === "lv" ? "Atvērt izvēlni" : selected === "ru" ? "Открыть меню" : "Open navigation")
+    );
+
+    languageButtons.forEach(function (button) {
+      const active = button.dataset.lang === selected;
+      button.setAttribute("aria-pressed", String(active));
+    });
+
+    document.getElementById("client-service").options[0].textContent =
+      translations[selected]["#client-service option"][0];
+
+    const subject = {
+      en: "New service request — Riga Detail Studio",
+      lv: "Jauns pakalpojuma pieprasījums — Riga Detail Studio",
+      ru: "Новая заявка на услугу — Riga Detail Studio"
+    };
+
+    document.querySelector('input[name="_subject"]').value = subject[selected];
+
+    try {
+      localStorage.setItem("riga-detail-language", selected);
+    } catch (error) {
+      // The language still works if browser storage is unavailable.
+    }
+  }
+
+  rememberOriginalText();
+
+  menuToggle.addEventListener("click", function () {
+    const isOpen = navLinks.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+
+    const language = document.documentElement.lang || "en";
+    const labels = {
+      en: isOpen ? "Close navigation" : "Open navigation",
+      lv: isOpen ? "Aizvērt izvēlni" : "Atvērt izvēlni",
+      ru: isOpen ? "Закрыть меню" : "Открыть меню"
+    };
+
+    menuToggle.setAttribute("aria-label", labels[language]);
+  });
+
+  navLinks.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      navLinks.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+
+      const language = document.documentElement.lang || "en";
+      const labels = {
+        en: "Open navigation",
+        lv: "Atvērt izvēlni",
+        ru: "Открыть меню"
+      };
+
+      menuToggle.setAttribute("aria-label", labels[language]);
+    });
+  });
+
+  languageButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      applyLanguage(button.dataset.lang);
+    });
+  });
+
+  document.getElementById("current-year").textContent =
+    new Date().getFullYear();
+
+  let initialLanguage = "en";
+
+  try {
+    const savedLanguage = localStorage.getItem("riga-detail-language");
+    if (translations[savedLanguage]) {
+      initialLanguage = savedLanguage;
+    }
+  } catch (error) {
+    // English remains the default if browser storage is unavailable.
+  }
+
+  applyLanguage(initialLanguage);
+</script>
+
 
 </body>
 </html>
